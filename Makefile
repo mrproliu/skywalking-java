@@ -21,8 +21,11 @@ NAME ?= skywalking-java
 TAG ?= latest
 AGENT_PACKAGE ?= skywalking-agent
 
+init:
+	git submodule update --init --recursive
+
 .PHONY: build
-build:
+build: init
 	./mvnw --batch-mode clean package -Dmaven.test.skip=true
 
 .PHONY: dist
